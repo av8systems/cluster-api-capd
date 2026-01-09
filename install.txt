@@ -350,6 +350,9 @@ kubectl label --overwrite ns --all pod-security.kubernetes.io/enforce=privileged
 ########################
 Destroy Lab environment
 ########################
+# Set context to management cluster
+kubectl config use-context kind-${MANAGEMENT_CLUSTER_NAME}
+
 # Delete the workload cluster
 kubectl delete cluster ${WORKLOAD_CLUSTER_NAME}
 
