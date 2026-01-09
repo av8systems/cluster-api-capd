@@ -53,7 +53,7 @@ cluster-api
            L clusterName-metallb-config.yaml
 
 # Move into the tmp directory
-cd tmp
+cd /mnt/c/av8systems/cluster-api/tmp
 
 # Install prerequisite packages
 sudo apt-get update
@@ -98,7 +98,7 @@ sudo mv bin/istioctl /usr/local/bin/
 istioctl version --remote=false
 
 # Move back to tmp directory
-cd .. 
+cd /mnt/c/av8systems/cluster-api/tmp
 
 # argocd
 curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/latest/download/argocd-linux-amd64
