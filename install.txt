@@ -26,7 +26,6 @@ wsl --list --online
 Install a wsl distribution
 wsl --install -- Ubuntu-22.04
 
-
 Create Environment Variables
 export MANAGEMENT_CLUSTER_NAME='d01capimgmt001' 
 export WORKLOAD_CLUSTER_NAME='d01av8test001'
@@ -36,11 +35,11 @@ export CLUSTER_TOPOLOGY=true
 export CLUSTERCTL_DEFAULT_INFRASTRUCTURE=docker
 
 Create directories
-mkdir cluster-api/providers/capd/clusters/management -p
-mkdir cluster-api/providers/capd/clusters/worklaod -p
-mkdir cluster-api/tools -p
-mkdir cluster-api/apps -p
-mkdir cluster-api/tmp -p
+mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/management -p
+mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/worklaod -p
+mkdir /mnt/c/av8systems/cluster-api/tools -p
+mkdir /mnt/c/av8systems/cluster-api/apps -p
+mkdir /mnt/c/av8systems/cluster-api/tmp -p
 mkdir $WORKLOAD_KUBECONFIG_DIR  -p 
 
 Cluster API directory structure
@@ -59,7 +58,6 @@ cluster-api
 
 Move into the tmp directory
 cd tmp
-
 
 Install prerequisite packages
 sudo apt-get update
