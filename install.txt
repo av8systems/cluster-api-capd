@@ -103,6 +103,12 @@ curl -sSL -o argocd-linux-amd64 https://github.com/argoproj/argo-cd/releases/lat
 sudo install -m 555 argocd-linux-amd64 /usr/local/bin/argocd
 argocd version
 
+Vault
+curl -fsSL  https://apt.releases.hashicorp.com/gpg | sudo gpg --dearmor -o /usr/share/keyrings/hashicorp-archive-keyring.gpg
+echo "deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/hashicorp-archive-keyring.gpg] https://apt.releases.hashicorp.com $(grep -oP '(?<=UBUNTU_CODENAME=).*' /etc/os-release || lsb_release -cs) main" | sudo tee /etc/apt/sources.list.d/hashicorp.list
+sudo apt update && sudo apt install vault
+vault version
+
 Configure Linux host settings
 
 Load br_netfilter kernel module
@@ -334,6 +340,9 @@ https://kind.sigs.k8s.io/docs/user/quick-start/#installation
 
 Clusterctl Install
 https://cluster-api.sigs.k8s.io/user/quick-start#install-clusterctl
+
+Vault cli Install
+https://developer.hashicorp.com/vault/install#linux
 
 Helm Install
 https://helm.sh/docs/intro/install/
