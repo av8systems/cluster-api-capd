@@ -357,7 +357,7 @@ kubectl config use-context kind-${MANAGEMENT_CLUSTER_NAME}
 kubectl delete cluster ${WORKLOAD_CLUSTER_NAME}
 
 # Delete the management cluster
-kind delete cluster${MANAGEMENT_CLUSTER_NAME}
+sudo kind delete cluster --name ${MANAGEMENT_CLUSTER_NAME}
 
 # Completely uninstall wsl distribution
 wsl --unregister Ubuntu-22.04 
