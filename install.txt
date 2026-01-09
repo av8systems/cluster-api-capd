@@ -11,11 +11,6 @@ root soft nofile 1048576
 root hard nofile 1048576
 EOF
 
-1 node kind management cluster
-3 node workload cluster with all tooling installed 
-Wsl is using about 45 GB of Disk space
-Vmmem process using about 11 GB of memory and 8% CPU
-
 Install wsl
 List currently installed wsl distributions
 wsl --list --verbose
