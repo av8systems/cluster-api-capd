@@ -412,3 +412,6 @@ https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/doc
 
 # Install Keda
 https://keda.sh/docs/2.18/deploy/
+
+# Install Harbor
+https://goharbor.io/docs/edge/install-config/harbor-ha-helm/
