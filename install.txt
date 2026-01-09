@@ -342,8 +342,10 @@ Label all namespaces with pod security settings
 ###############################################
 kubectl label --overwrite ns --all pod-security.kubernetes.io/enforce=privileged pod-security.kubernetes.io/audit=baseline pod-security.kubernetes.io/warn=baseline --kubeconfig=$KubeConfig
 
-# Destroy Lab environment
-Delete the workload cluster
+########################
+Destroy Lab environment
+########################
+# Delete the workload cluster
 kubectl delete cluster ${WORKLOAD_CLUSTER_NAME}
 
 # Delete the management cluster
@@ -352,49 +354,56 @@ kind delete cluster${MANAGEMENT_CLUSTER_NAME }
 # Completely uninstall wsl distribution
 wsl --unregister Ubuntu-22.04 
 
-
-Links
-WSL Install
+#############
+Helpful Links
+#############
+# Install WSL
 https://learn.microsoft.com/en-us/windows/wsl/install
 
-Kubectl Install
+# Install Kubectl
 https://kubernetes.io/docs/tasks/tools/install-kubectl-linux
 
-Kind Install
+# Install Kind
 https://kind.sigs.k8s.io/docs/user/quick-start/#installation
 
-Clusterctl Install
+# Install Clusterctl
 https://cluster-api.sigs.k8s.io/user/quick-start#install-clusterctl
 
-Vault cli Install
+# Install Vault Cli
 https://developer.hashicorp.com/vault/install#linux
 
-Helm Install
+# Install Helm
 https://helm.sh/docs/intro/install/
 
-Istioctl Install
+# Install Istioctl
 https://istio.io/latest/docs/setup/additional-setup/download-istio-release
 
-ArgoCD commandline tool Install
+# Install ArgoCD Commandline Tool
 https://argo-cd.readthedocs.io/en/stable/cli_installation
 
-ClustAPI troubleshooting guide
+# ClustAPI Troubleshooting Guide
 https://cluster-api.sigs.k8s.io/user/troubleshooting
 
-Install Falco
+# Install Falco
 https://falco.org/docs/setup/kubernetes/
 
-Install Vault and Vault Secrets Operator Helm charts
+# Install Vault and Vault Secrets Operator Helm charts
 https://developer.hashicorp.com/vault/tutorials/kubernetes-introduction/vault-secrets-operator
 
-Install Kyverno
+# Install Kyverno
 https://kyverno.io/docs/installation/methods/
 
-Install Kyerno Policy Reporter
+# Install Kyerno Policy Reporter
 https://kyverno.github.io/policy-reporter-docs/getting-started/installation.html
 
-Install Trivy Helm Chart
+# Install Trivy Helm Chart
 https://aquasecurity.github.io/trivy-operator/v0.1.5/operator/installation/helm/
 
-Install Metrics Server Helm Chart
+# Install Metrics Server Helm Chart
 https://artifacthub.io/packages/helm/metrics-server/metrics-server
+
+# Install Vertical Pod Autoscaler
+https://github.com/kubernetes/autoscaler/blob/master/vertical-pod-autoscaler/docs/installation.md
+
+# Install Keda
+https://keda.sh/docs/2.18/deploy/
