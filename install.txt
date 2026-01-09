@@ -178,7 +178,7 @@ nodes:
 
 # press "ctl + c" to exit out of insert mode
 # press "shift + :" to give it an exit command
-# type "wq" to save the file
+# type "wq" then press enter to save the file
 
 # Create kind management cluster from yaml config file
 kind create cluster --name ${MANAGEMENT_CLUSTER_NAME} --config ${MANAGEMENT_CLUSTER_NAME}.yaml
