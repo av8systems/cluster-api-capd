@@ -183,8 +183,8 @@ nodes:
 # Create kind management cluster from yaml config file
 kind create cluster --name ${MANAGEMENT_CLUSTER_NAME} --config ${MANAGEMENT_CLUSTER_NAME}.yaml
 
-# Wait for the management cluster node status to be ready by getting node status
-kubectl get node
+# Wait for the management cluster node status to be ready
+kubectl get node --watch
 
 # Initialize management cluster
 clusterctl init --infrastructure docker
