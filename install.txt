@@ -189,6 +189,9 @@ kubectl get node
 # Initialize management cluster
 clusterctl init --infrastructure docker
 
+# Ensure all pods reach a running status
+kubectl get pods -A --watch
+
 # Generate yaml for workload cluster
 clusterctl generate cluster ${WORKLOAD_CLUSTER_NAME} --flavor development --infrastructure docker --kubernetes-version v1.32.0 --control-plane-machine-count=1 --worker-machine-count=2 > ${WORKLOAD_CLUSTER_NAME}.yaml
 
