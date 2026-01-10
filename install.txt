@@ -274,7 +274,7 @@ git clone https://github.com/kubernetes/autoscaler.git
 cd autoscaler/vertical-pod-autoscaler/
 ./hack/vpa-up.sh
 
-# Move back to temp directory
+# Move back to tmp directory
 cd /mnt/c/av8systems/cluster-api/tmp
 
 ###############################
@@ -283,11 +283,15 @@ Install Observability workloads
 # Install Istio
 istioctl install -y --set profile=demo
 
+# Move to istio addons directory
+# istio directory name may be different depending on the version downloaded
+cd istio-1.28.2/samples/addons
+
 # Install  Kiali
 kubectl apply -f ./kiali.yaml
 
 # Install  Promethus
-kubectl apply -f ./promethus.yaml
+kubectl apply -f ./prometheus.yaml
 
 # Install Grafana
 kubectl apply -f ./grafana.yaml
@@ -297,6 +301,9 @@ kubectl apply -f ./jaeger.yaml
 
 # Install Loki
 kubectl apply -f ./loki.yaml
+
+# Move back to tmp directory
+cd /mnt/c/av8systems/cluster-api/tmp
 
 ##########################
 Install Security Workloads
