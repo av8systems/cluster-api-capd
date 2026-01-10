@@ -326,7 +326,7 @@ helm install policy-reporter policy-reporter/policy-reporter --create-namespace 
 # Install Vault Server 
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo update hashicorp
-helm install vault hashicorp/vault -n vault --create-namespace --values vault/vault-values.yaml
+helm install vault hashicorp/vault -n vault --create-namespace
 
 # Install Vault Secrets Operator
 helm repo add hashicorp https://helm.releases.hashicorp.com
