@@ -274,6 +274,9 @@ git clone https://github.com/kubernetes/autoscaler.git
 cd autoscaler/vertical-pod-autoscaler/
 ./hack/vpa-up.sh
 
+# Move back to temp directory
+cd /mnt/c/av8systems/cluster-api/tmp
+
 ###############################
 Install Observability workloads
 ###############################
