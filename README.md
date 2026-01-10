@@ -19,7 +19,7 @@ root hard nofile 1048576
 EOF
 
 # Pasting into vim editor
-#Formatting might be off and must be fixed if pasting from install document into vim editor
+Formatting might be off and must be fixed if pasting from install document into vim editor
 As a workaround you can create the files using notepad or vs code.
 As an example, for the management cluster create a new file then paste in the yaml from the install document
 then save it in the '/mnt/c/av8systems/cluster-api/tmp' directory with the name 'd01capimgmt001.yaml' 
