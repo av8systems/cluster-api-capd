@@ -7,6 +7,12 @@ after creating you managment or workload cluster.
 #########
 IMPORTANT
 #########
+# After you complete all infrastructure tasks you dont have to install every workload
+# As it will consume a lot of cpu and memory resources
+# Only the ones you will be working with and any ones they depend on can be installed
+# As an example if you are deploying argo cd and want to use istio ingress to access it
+# Istio needs to be installed as well
+
 # Anytime you see  <<EOF copy the full block of text until you see EOF at the bottom of the block
 # As an example copy the full block below from line 12 to 17
 sudo tee /etc/security/limits.d/99-nofile.conf >/dev/null <<'EOF'
