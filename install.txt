@@ -13,6 +13,12 @@ root soft nofile 1048576
 root hard nofile 1048576
 EOF
 
+# WARNING.
+# Formatting might be off and must be fixed if pasting from here into vim editor
+# You can create the files using notepad or vs code
+# as an example for the management cluster create a new file, paste in the yaml from here
+# then save it in '/mnt/c/av8systems/cluster-api/tmp' with the name 'd01capimgmt001.yaml' 
+
 # Install wsl
 # List currently installed wsl distributions
 wsl --list --verbose
@@ -161,12 +167,12 @@ sudo sysctl --system
 ####################
 Infrastructure Tasks
 ####################
-# Create management cluster yaml
+# Create management cluster yaml 
 vim ${MANAGEMENT_CLUSTER_NAME}.yaml
 
 # press the "i" key to insert text
 
-# Copy and paste below yaml into editor (can also use notepad or vs code)
+# Copy and paste below yaml into text editor (can also use notepad or vs code)
 kind: Cluster
 apiVersion: kind.x-k8s.io/v1alpha4
 nodes:
