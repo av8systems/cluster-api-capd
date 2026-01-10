@@ -355,6 +355,7 @@ helm install vault hashicorp/vault -n vault --create-namespace --set injector.en
 
 # Install Vault Secrets Operator
 helm repo add hashicorp https://helm.releases.hashicorp.com
+helm repo update hashicorp
 helm install vault-secrets-operator hashicorp/vault-secrets-operator -n vault-secrets-operator-system --create-namespace
 
 # Install Trivy
