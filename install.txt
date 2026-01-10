@@ -348,7 +348,7 @@ helm repo add policy-reporter https://kyverno.github.io/policy-reporter
 helm repo update policy-reporter
 helm install policy-reporter policy-reporter/policy-reporter --create-namespace -n policy-reporter --set ui.enabled=true
 
-# Install Vault Server 
+# Install Vault Server (should show 0/1 for containers until its unsealed which we will do later)
 helm repo add hashicorp https://helm.releases.hashicorp.com
 helm repo update hashicorp
 helm install vault hashicorp/vault -n vault --create-namespace --set injector.enabled=false
