@@ -210,14 +210,22 @@ clusterctl generate cluster ${WORKLOAD_CLUSTER_NAME} --flavor development --infr
 # Create workload cluster
 kubectl apply -f ${WORKLOAD_CLUSTER_NAME}.yaml
 
+# Wait for workload cluster nodes to be created
+# CP UP-TO-DATE should say 1
+# W UP-TO-DATE should say 2 (or the number of desired worker nodes)
+kubectl get cluster ${WORKLOAD_CLUSTER_NAME} --watch
+
 # Export workload cluster kubeconfig file
 clusterctl get kubeconfig "$WORKLOAD_CLUSTER_NAME" > "$WORKLOAD_KUBECONFIG_FILE"
 
-# Merge workload cluster kubeconfig file with the main config file 
+# Merge workload cluster kubeconfig file with the main config file (copy and paste both lines)
 KUBECONFIG="$HOME/.kube/config:$WORKLOAD_KUBECONFIG_FILE" \
 kubectl config view --merge --flatten > "$HOME/.kube/config.merged"
 
+# Make a backup the current config file
 cp "$HOME/.kube/config" "$HOME/.kube/config.bak.$(date +%Y%m%d%H%M%S)"
+
+# Replace the current config file with the merged config file
 mv "$HOME/.kube/config.merged" "$HOME/.kube/config"
 
 # Set kubectl context to your workload cluster
