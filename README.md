@@ -11,12 +11,6 @@ then Istio needs to be installed as well.
 
 # Copying text blocks
 Anytime you see <<EOF copy the full block of text until you see EOF at the bottom of the block
-sudo tee /etc/security/limits.d/99-nofile.conf >/dev/null <<'EOF'
-* soft nofile 1048576
-* hard nofile 1048576
-root soft nofile 1048576
-root hard nofile 1048576
-EOF
 
 # Pasting into vim editor
 Formatting might be off and must be fixed if pasting from install document into vim editor
