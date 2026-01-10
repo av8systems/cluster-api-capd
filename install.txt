@@ -266,7 +266,7 @@ kubectl patch storageclass local-path -p '{"metadata": {"annotations":{"storagec
 # Install the metrics server
 helm repo add metrics-server https://kubernetes-sigs.github.io/metrics-server/
 helm repo update metrics-server
-helm upgrade --install metrics-server metrics-server/metrics-server
+helm upgrade --install metrics-server metrics-server/metrics-server -n kube-system
 
 # Install vertical pod autoscaler
 # make sure you are in the /tmp directory
