@@ -1,4 +1,28 @@
-# cluster-api-capd
-Build and bootstrap Kubernetes cluster on your local laptop using Wsl and the Cluster Api Docker provider CAPD.
+# Build and bootstrap Kubernetes cluster on your local laptop using Wsl and the Cluster Api Docker provider CAPD
+This guide also addresses some of problems you might run into (that make you want to give up or put it off) 
+after creating you managment or workload cluster.
 
-This guide provides a comprehensive technical framework for building a platform engineering laboratory using Cluster API and the CAPD provider. It begins with the initial setup of WSL, Docker, and essential command-line utilities like kubectl and kind to bootstrap both management and workload clusters. The documentation details how to configure critical infrastructure components, including networking, load balancing via MetalLB, and persistent storage. Furthermore, it outlines the integration of advanced observability tools, security protocols such as Falco and Vault, and GitOps deployment workflows with Argo CD. This resource serves as a structured roadmap for engineers to deploy, manage, and eventually dismantle a sophisticated, multi-layered Kubernetes environment.
+
+#################
+# IMPORTANT NOTES
+#################
+
+# Optional workload installation
+After you complete all infrastructure tasks you dont have to install every workload
+as it will consume a lot of cpu and memory resources.
+Only the ones you will be working with and any ones they depend on can be installed.
+As an example if you are deploying argo cd and want to use istio ingress to access it
+then Istio needs to be installed as well.
+
+# Anytime you see <<EOF copy the full block of text until you see EOF at the bottom of the block
+sudo tee /etc/security/limits.d/99-nofile.conf >/dev/null <<'EOF'
+* soft nofile 1048576
+* hard nofile 1048576
+root soft nofile 1048576
+root hard nofile 1048576
+EOF
+
+# Formatting might be off and must be fixed if pasting from install document into vim editor
+As a workaround you can create the files using notepad or vs code.
+As an example, for the management cluster create a new file then paste in the yaml from the install document
+then save it in the '/mnt/c/av8systems/cluster-api/tmp' directory with the name 'd01capimgmt001.yaml' 
