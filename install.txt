@@ -255,7 +255,7 @@ spec:
   - capd-pool
 
 # Apply metallb IP and Advertisement yaml file
-kubectl apply -f metallb-pool.yaml
+kubectl apply -f ${WORKLOAD_CLUSTER_NAME}-metallb-ipam.yaml
 
 # Install local Path Provisioner 
 kubectl apply -f https://raw.githubusercontent.com/rancher/local-path-provisioner/master/deploy/local-path-storage.yaml
