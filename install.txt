@@ -211,10 +211,12 @@ mv "$HOME/.kube/config.merged" "$HOME/.kube/config"
 # Set kubectl context to your workload cluster
 kubectl config use-context ${WORKLOAD_CLUSTER_NAME}-admin@${WORKLOAD_CLUSTER_NAME}
 
-# Run kubectl command to ensure you in the context of the correct cluster
+# Run kubectl command to ensure you in the context of the correct cluster 
+# Nodes will have a not ready status
 kubectl get nodes
 
 # Install calico cni on the workload cluster
+# Nodes will become ready after calico install
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.3/manifests/calico.yaml
 
 # Wait for all pods to have a status of running (will take a couple minutes)
