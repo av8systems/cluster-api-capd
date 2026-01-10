@@ -221,10 +221,10 @@ kubectl get pods -A
 kubectl apply -f https://raw.githubusercontent.com/metallb/metallb/v0.14.8/config/manifests/metallb-native.yaml
 
 # Get docker network CIDR your workload nodes are on
-docker inspect d01av8sbx001-lb --format '{{range $k,$v := .NetworkSettings.Networks}}{{$k}} {{$v.IPAddress}} {{$v.NetworkID}}{{end}}'
+docker inspect ${WORKLOAD_CLUSTER_NAME}-lb --format '{{range $k,$v := .NetworkSettings.Networks}}{{$k}} {{$v.IPAddress}} {{$v.NetworkID}}{{end}}'
 
 # Get subnet for workload network
-NET_NAME=$(docker inspect d01av8sbx001-lb --format '{{range $k,$v := .NetworkSettings.Networks}}{{$k}}{{end}}')
+NET_NAME=$(docker inspect ${WORKLOAD_CLUSTER_NAME}-lb --format '{{range $k,$v := .NetworkSettings.Networks}}{{$k}}{{end}}')
 docker network inspect "$NET_NAME" --format '{{json .IPAM.Config}}' | jq
 
 # Create metallb IP Pool (with small range from workload network) and advertisement yaml file
