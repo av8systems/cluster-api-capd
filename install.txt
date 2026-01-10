@@ -234,7 +234,7 @@ docker network inspect "$NET_NAME" --format '{{json .IPAM.Config}}' | jq
 
 # Create metallb IP Pool (with small range from workload network) and advertisement yaml file
 # Replace the ip range in the yaml file
-Vim ${WORKLOAD_CLUSTER_NAME}-metallb-ipam.yaml
+vim ${WORKLOAD_CLUSTER_NAME}-metallb-ipam.yaml
 # copy yaml below into vim editor after you add the correct Ip range
 apiVersion: metallb.io/v1beta1
 kind: IPAddressPool
