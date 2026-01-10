@@ -21,7 +21,7 @@ wsl --list --verbose
 wsl --list --online
 
 # Install a wsl distribution
-wsl --install -- Ubuntu-22.04
+wsl --install -d Ubuntu-22.04
 
 # Create Environment Variables
 export MANAGEMENT_CLUSTER_NAME='d01capimgmt001' 
