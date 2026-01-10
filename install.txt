@@ -309,6 +309,8 @@ cd /mnt/c/av8systems/cluster-api/tmp
 Install Security Workloads
 ##########################
 # Install Falco and Falco UI
+helm repo add falcosecurity https://falcosecurity.github.io/charts
+helm repo update falcosecurity
 helm install falco falcosecurity/falco --create-namespace --namespace falco --set falcosidekick.enabled=true --set falcosidekick.webui.enabled=true
 
 # Install Kyverno
