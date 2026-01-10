@@ -2,10 +2,7 @@
 This guide also addresses some of problems you might run into (that make you want to give up or put it off) 
 after creating you managment or workload cluster.
 
-
-#################
 # IMPORTANT NOTES
-#################
 
 # Optional workload installation
 After you complete all infrastructure tasks you dont have to install every workload
