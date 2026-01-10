@@ -33,7 +33,7 @@ export CLUSTERCTL_DEFAULT_INFRASTRUCTURE=docker
 
 # Create directories
 mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/management -p
-mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/worklaod -p
+mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/workload -p
 mkdir /mnt/c/av8systems/cluster-api/tools -p
 mkdir /mnt/c/av8systems/cluster-api/apps -p
 mkdir /mnt/c/av8systems/cluster-api/tmp -p
