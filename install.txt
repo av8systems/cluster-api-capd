@@ -359,6 +359,9 @@ kubectl delete cluster ${WORKLOAD_CLUSTER_NAME}
 # Delete the management cluster
 sudo kind delete cluster --name ${MANAGEMENT_CLUSTER_NAME}
 
+# Remove directories
+rm /mnt/c/av8systems -fr
+
 # Completely uninstall wsl distribution
 wsl --unregister Ubuntu-22.04 
 
