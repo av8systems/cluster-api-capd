@@ -4,8 +4,11 @@ Use the Cluster API CAPD provider to provision and bootstrap a Kubernetes cluste
                     
 # This guide also addresses some of problems you might run into (that make you want to give up or put it off) after creating you managment or workload cluster.
 
-# NOTES.
-Anytime you see  <<EOF copy the full block of text until you see EOF at the bottom of the block
+#########
+IMPORTANT
+#########
+# Anytime you see  <<EOF copy the full block of text until you see EOF at the bottom of the block
+# As an example copy the full block below from line 12 to 17
 sudo tee /etc/security/limits.d/99-nofile.conf >/dev/null <<'EOF'
 * soft nofile 1048576
 * hard nofile 1048576
@@ -13,12 +16,15 @@ root soft nofile 1048576
 root hard nofile 1048576
 EOF
 
-# WARNING.
 # Formatting might be off and must be fixed if pasting from here into vim editor
-# You can create the files using notepad or vs code
-# as an example for the management cluster create a new file, paste in the yaml from here
-# then save it in '/mnt/c/av8systems/cluster-api/tmp' with the name 'd01capimgmt001.yaml' 
+# As a workaround you can create the files using notepad or vs code
+# As an example for the management cluster
+# Create a new file then paste in the yaml from this document
+# then save it in the '/mnt/c/av8systems/cluster-api/tmp' directory with the name 'd01capimgmt001.yaml' 
 
+#####################
+Start of Lab Creation
+#####################
 # Install wsl
 # List currently installed wsl distributions
 wsl --list --verbose
