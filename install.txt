@@ -239,7 +239,7 @@ kubectl get nodes
 # Nodes will become ready after calico install
 kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.3/manifests/calico.yaml
 
-# Wait for all pods to have a status of running (will take a couple minutes)
+# Wait for all pods to have a status of running
 kubectl get pods -A --watch
 
 # Install metallb load balancer
