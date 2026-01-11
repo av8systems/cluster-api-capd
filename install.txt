@@ -143,6 +143,31 @@ fs.inotify.max_user_watches=1048576
 fs.inotify.max_queued_events=32768
 EOF
 
+# Add network settings configuration to /etc/wsl.conf
+sudo vim /etc/wsl.conf
+[network]
+generateResolvConf = false
+
+# Restart Wsl
+wsl --shutdown
+wsl
+
+# Manually set DNS servers
+sudo tee /etc/resolv.conf <<'EOF'
+nameserver 1.1.1.1
+nameserver 8.8.8.8
+options timeout:2 attempts:3
+EOF
+
+# Make /etc/resolv.conf immutable
+sudo chattr +i /etc/resolv.conf
+
+# Increase conntrack limits
+sudo tee /etc/sysctl.d/99-k8s-conntrack.conf <<'EOF'
+net.netfilter.nf_conntrack_max=1048576
+net.netfilter.nf_conntrack_buckets=262144
+EOF
+
 # Reload kernel parameters
 sudo sysctl --system
 
@@ -271,6 +296,16 @@ helm upgrade --install metrics-server metrics-server/metrics-server -n kube-syst
 git clone https://github.com/kubernetes/autoscaler.git
 cd autoscaler/vertical-pod-autoscaler/
 ./hack/vpa-up.sh
+
+# Replace forward section in coredns configmap
+kubectl -n kube-system edit configmap coredns
+# Replace with the forward section below
+forward . 1.1.1.1 8.8.8.8 {
+  max_concurrent 1000
+}
+
+# Restart the coredns deployment
+kubectl rollout restart deployment -n kube-system coredns 
 
 # Move back to tmp directory
 cd /mnt/c/av8systems/cluster-api/tmp
