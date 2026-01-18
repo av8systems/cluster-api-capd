@@ -141,6 +141,7 @@ sudo vim /etc/wsl.conf
 generateResolvConf = false
 
 # Restart Wsl
+exit out of wsl
 wsl --shutdown
 wsl
 
