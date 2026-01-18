@@ -11,14 +11,6 @@ wsl --list --online
 # Install a wsl distribution
 wsl --install -d Ubuntu-22.04
 
-# Create Environment Variables
-export MANAGEMENT_CLUSTER_NAME='d01capimgmt001' 
-export WORKLOAD_CLUSTER_NAME='d01av8test001'
-export WORKLOAD_KUBECONFIG_DIR="/mnt/c/av8systems/cluster-api/providers/capd/clusters/workload/${WORKLOAD_CLUSTER_NAME}/configs"
-export WORKLOAD_KUBECONFIG_FILE="${WORKLOAD_KUBECONFIG_DIR}/${WORKLOAD_CLUSTER_NAME}.kubeconfig"
-export CLUSTER_TOPOLOGY=true
-export CLUSTERCTL_DEFAULT_INFRASTRUCTURE=docker
-
 # Create directories
 mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/management -p
 mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/workload -p
@@ -171,9 +163,17 @@ EOF
 # Reload kernel parameters
 sudo sysctl --system
 
-####################
-Infrastructure Tasks
-####################
+########################################
+# Create Management and Workload Cluster
+########################################
+# Create Environment Variables
+export MANAGEMENT_CLUSTER_NAME='d01capimgmt001' 
+export WORKLOAD_CLUSTER_NAME='d01av8test001'
+export WORKLOAD_KUBECONFIG_DIR="/mnt/c/av8systems/cluster-api/providers/capd/clusters/workload/${WORKLOAD_CLUSTER_NAME}/configs"
+export WORKLOAD_KUBECONFIG_FILE="${WORKLOAD_KUBECONFIG_DIR}/${WORKLOAD_CLUSTER_NAME}.kubeconfig"
+export CLUSTER_TOPOLOGY=true
+export CLUSTERCTL_DEFAULT_INFRASTRUCTURE=docker
+
 # Create management cluster yaml 
 vim ${MANAGEMENT_CLUSTER_NAME}.yaml
 
