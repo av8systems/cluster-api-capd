@@ -175,6 +175,9 @@ export WORKLOAD_KUBECONFIG_FILE="${WORKLOAD_KUBECONFIG_DIR}/${WORKLOAD_CLUSTER_N
 export CLUSTER_TOPOLOGY=true
 export CLUSTERCTL_DEFAULT_INFRASTRUCTURE=docker
 
+# Move back to tmp directory
+cd /mnt/c/av8systems/cluster-api/tmp
+
 # Create management cluster yaml 
 vim ${MANAGEMENT_CLUSTER_NAME}.yaml
 
