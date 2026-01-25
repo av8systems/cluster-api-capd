@@ -50,7 +50,42 @@ wsl --shutdown
 wsl -d Ubuntu-22.04
 ```
 
+### Step 7: Open PowerShell from Wsl
 
+```bash
+pwsh
+```
+
+### Step 7: Run the automated install script
+
+Pick an install type
+
+```powershell
+# Install with no optional workloads
+./automated_install.ps1
+```
+
+```powershell
+# Install with all optional workloads
+./automated_install.ps1 -InstallObservability -InstallSecurity -InstallAppManagement
+```
+
+```powershell
+# Install with observability workloads
+# Istio, Kiali, Prometheus, Grafana, Jaeger, Loki
+./automated_install.ps1 -InstallObservability
+```
+
+```powershell
+# Install with security workloads
+**Security:** Falco, Kyverno, Vault, Trivy
+./automated_install.ps1 -InstallSecurity 
+```
+
+```powershell
+# Install with appplication management workloads
+./automated_install.ps1 -InstallAppManagement
+```
 
 This installs:
 - ✅ Management cluster (Kind)
@@ -58,24 +93,11 @@ This installs:
 
 #### Full Installation (All Workloads)
 
-```bash
-# Install with all optional workloads
-pwsh ./Setup-K8sClusterAPI.ps1 -InstallObservability -InstallSecurity -InstallAppManagement
-```
 
 Additional components:
 - **Observability:** Istio, Kiali, Prometheus, Grafana, Jaeger, Loki
-- **Security:** Falco, Kyverno, Vault, Trivy
+- 
 - **App Management:** ArgoCD, Keda, Harbor
-
-**Estimated time:** 40-50 minutes
-
-#### Custom Installation Examples
-
-```bash
-# Larger cluster with observability
-pwsh ./Setup-K8sClusterAPI.ps1 -WorkerNodeCount 3 -InstallObservability
-
 
 
 ### Step 8: Verify Installation
