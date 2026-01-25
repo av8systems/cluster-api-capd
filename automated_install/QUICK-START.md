@@ -6,33 +6,6 @@ This guide uses a **two-step process**:
 1. **Install PowerShell 7** in WSL (bash script)
 2. **Run the main setup** from PowerShell (PowerShell script)
 
----
-
-## Prerequisites
-
-### Before You Begin
-- ✅ Windows 10/11 with WSL2
-- ✅ WSL Ubuntu 22.04 installed
-- ✅ At least 8GB RAM (16GB recommended)
-- ✅ At least 50GB free disk space
-
-### Manual WSL Installation
-
-If you haven't installed WSL yet:
-
-```powershell
-# Open PowerShell as Administrator
-wsl --install -d Ubuntu-22.04
-```
-
-After installation:
-1. Restart your computer if prompted
-2. Launch Ubuntu from Start menu
-3. Complete initial user setup
-4. Close Ubuntu
-
----
-
 ## Step-by-Step Installation
 
 ### Step 1: Enter WSL
@@ -41,10 +14,9 @@ After installation:
 # From Windows PowerShell or Terminal
 wsl -d Ubuntu-22.04
 ```
-
 You should now be in your Ubuntu bash shell.
 
-### Step 2: Download the Scripts
+### Step 2: Clone Repository
 
 Copy the following files to your WSL home directory:
 - `install-powershell.sh`
@@ -438,43 +410,12 @@ kind delete cluster --name d01capimgmt001
 rm -rf /mnt/c/av8systems
 ```
 
----
-
-## Resource Requirements by Setup Type
-
-| Setup Type | RAM | CPU | Time |
-|------------|-----|-----|------|
-| Basic | 4-6 GB | 2-4 cores | 15-20 min |
-| + Observability | 8-10 GB | 4 cores | 25-30 min |
-| + Security | 10-12 GB | 4-6 cores | 30-35 min |
-| Full (All) | 12-16 GB | 6-8 cores | 40-50 min |
-
----
-
-## Need Help?
-
-1. Check `SCRIPT-README.md` for detailed documentation
-2. Check `PowerShell7-WSL-Guide.md` for PowerShell tips
-3. Review logs in the terminal output
-4. Check Cluster API troubleshooting: https://cluster-api.sigs.k8s.io/user/troubleshooting
-
----
-
 ## Summary
 
 **Installation Steps:**
 1. ✅ Enter WSL
 2. ✅ Run `install-powershell.sh`
-3. ✅ Run `preflight-check.sh` (recommended)
-4. ✅ Handle Docker group if needed (restart WSL or use `newgrp docker`)
 5. ✅ Run `pwsh ./Setup-K8sClusterAPI.ps1`
-6. ✅ Wait for completion
-7. ✅ Verify: `kubectl get nodes`
 
-**You now have:**
-- ✅ Fully functional Kubernetes cluster
-- ✅ PowerShell 7 in WSL
-- ✅ All necessary CLI tools
-- ✅ Optional workloads (if selected)
 
 Happy clustering! 🚀
