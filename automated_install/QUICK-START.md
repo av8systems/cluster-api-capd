@@ -3,15 +3,15 @@
 ## Installation Workflow
 
 This guide uses a **two-step process**:
-1. **Install PowerShell 7** in WSL (bash script)
+1. **Install PowerShell 7 and Docker Engine** in WSL (bash script)
 2. **Run the main setup** from PowerShell (PowerShell script)
 
 ## Step-by-Step Installation
 
-### Step 1: Enter WSL
+### Step 1: Install WSL
 
 ```powershell
-# From Windows PowerShell or Terminal
+# From PowerShell or Terminal
 wsl -d Ubuntu-22.04
 ```
 You should now be in your Ubuntu bash shell.
@@ -157,30 +157,7 @@ Additional components:
 # Larger cluster with observability
 pwsh ./Setup-K8sClusterAPI.ps1 -WorkerNodeCount 3 -InstallObservability
 
-# Custom cluster names
-pwsh ./Setup-K8sClusterAPI.ps1 -ManagementClusterName "prod-mgmt" -WorkloadClusterName "prod-cluster-01"
 
-# Security-focused setup
-pwsh ./Setup-K8sClusterAPI.ps1 -InstallSecurity -WorkloadClusterName "sec-cluster"
-```
-
-### Step 7: Wait for Installation
-
-The script will display progress for each step. **Do not close the terminal** during installation.
-
-You'll see output like:
-```
-========================================
-Step 1: Creating Directory Structure
-========================================
->>> Creating directory structure
-Executing: mkdir -p /mnt/c/av8systems/cluster-api/...
-
-========================================
-Step 2: Installing Prerequisites
-========================================
-...
-```
 
 ### Step 8: Verify Installation
 
@@ -199,223 +176,5 @@ kubectl get pods -A
 # Check MetalLB IP pool
 kubectl get ipaddresspool -n metallb-system
 ```
-
-**Expected node output:**
-```
-NAME                             STATUS   ROLES           AGE   VERSION
-d01av8test001-control-plane-xxx  Ready    control-plane   10m   v1.32.0
-d01av8test001-worker-xxx         Ready    <none>          9m    v1.32.0
-d01av8test001-worker-yyy         Ready    <none>          9m    v1.32.0
-```
-
----
-
-## Common Installation Options
-
-### All Available Parameters
-
-```bash
-pwsh ./Setup-K8sClusterAPI.ps1 -Help
-```
-
-| Parameter | Type | Default | Description |
-|-----------|------|---------|-------------|
-| `-DistroName` | String | Ubuntu-22.04 | WSL distribution name |
-| `-ManagementClusterName` | String | d01capimgmt001 | Management cluster name |
-| `-WorkloadClusterName` | String | d01av8test001 | Workload cluster name |
-| `-ControlPlaneCount` | Integer | 1 | Control plane node count |
-| `-WorkerNodeCount` | Integer | 2 | Worker node count |
-| `-InstallObservability` | Switch | false | Install observability stack |
-| `-InstallSecurity` | Switch | false | Install security stack |
-| `-InstallAppManagement` | Switch | false | Install app management stack |
-
----
-
-## Post-Installation
-
-### Accessing Your Clusters
-
-```bash
-# List all contexts
-kubectl config get-contexts
-
-# Switch to management cluster
-kubectl config use-context kind-d01capimgmt001
-
-# Switch to workload cluster
-kubectl config use-context d01av8test001-admin@d01av8test001
-```
-
-### File Locations
-
-**Configuration files:**
-- `C:\av8systems\cluster-api\` - Main directory
-- `C:\av8systems\cluster-api\providers\capd\clusters\workload\<cluster-name>\configs\` - Kubeconfigs
-
-**In WSL:**
-- `/mnt/c/av8systems/cluster-api/` - Same as above
-- `~/.kube/config` - Merged kubeconfig
-
-### Testing the Cluster
-
-```bash
-# Deploy a test application
-kubectl create deployment nginx --image=nginx
-kubectl expose deployment nginx --type=LoadBalancer --port=80
-
-# Get the external IP (from MetalLB)
-kubectl get svc nginx
-
-# Test the service
-curl http://<EXTERNAL-IP>
-```
-
-### Accessing Web UIs (If Installed)
-
-#### ArgoCD (App Management)
-```bash
-# Get admin password
-kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d
-
-# Port forward to access UI
-kubectl port-forward svc/argocd-server -n argocd 8080:443
-
-# Access at: https://localhost:8080
-# Username: admin
-# Password: (from above command)
-```
-
-#### Kiali (Service Mesh - Observability)
-```bash
-kubectl port-forward svc/kiali -n istio-system 20001:20001
-
-# Access at: http://localhost:20001
-```
-
-#### Grafana (Monitoring - Observability)
-```bash
-kubectl port-forward svc/grafana -n istio-system 3000:3000
-
-# Access at: http://localhost:3000
-```
-
-#### Falco UI (Security)
-```bash
-kubectl port-forward svc/falco-falcosidekick-ui -n falco 2802:2802
-
-# Access at: http://localhost:2802
-```
-
----
-
-## Troubleshooting
-
-### PowerShell Installation Failed
-
-```bash
-# Check Ubuntu version
-lsb_release -a
-
-# Manually install
-sudo apt-get update
-sudo apt-get install -y wget apt-transport-https software-properties-common
-wget -q https://packages.microsoft.com/config/ubuntu/$(lsb_release -rs)/packages-microsoft-prod.deb
-sudo dpkg -i packages-microsoft-prod.deb
-sudo apt-get update
-sudo apt-get install -y powershell
-```
-
-### DNS Issues in WSL
-
-```bash
-# Check DNS
-cat /etc/resolv.conf
-
-# If incorrect, restart WSL from Windows PowerShell:
-wsl --shutdown
-wsl
-```
-
-### Docker Not Starting
-
-```bash
-# Check Docker status
-sudo service docker status
-
-# Restart Docker
-sudo service docker restart
-
-# Verify you're in docker group
-groups | grep docker
-```
-
-### Pods Not Becoming Ready
-
-```bash
-# Check pod details
-kubectl describe pod <pod-name> -n <namespace>
-
-# Check logs
-kubectl logs <pod-name> -n <namespace>
-
-# Check Calico (CNI) status
-kubectl get pods -n kube-system -l k8s-app=calico-node
-```
-
-### Cluster Creation Stuck
-
-```bash
-# Switch to management cluster
-kubectl config use-context kind-d01capimgmt001
-
-# Check cluster status
-kubectl get cluster
-kubectl get machine
-kubectl get machinedeployment
-
-# View events
-kubectl get events --all-namespaces --sort-by='.lastTimestamp'
-```
-
----
-
-## Cleanup / Destruction
-
-### Complete Cleanup
-
-```bash
-# Run the cleanup script
-pwsh ./Cleanup-K8sClusterAPI.ps1
-
-# With directories
-pwsh ./Cleanup-K8sClusterAPI.ps1 -RemoveDirectories
-
-# Complete removal (including WSL)
-pwsh ./Cleanup-K8sClusterAPI.ps1 -RemoveDirectories -UnregisterWSL -Force
-```
-
-### Manual Cleanup
-
-```bash
-# Switch to management cluster
-kubectl config use-context kind-d01capimgmt001
-
-# Delete workload cluster
-kubectl delete cluster d01av8test001
-
-# Delete management cluster
-kind delete cluster --name d01capimgmt001
-
-# Remove directories
-rm -rf /mnt/c/av8systems
-```
-
-## Summary
-
-**Installation Steps:**
-1. ✅ Enter WSL
-2. ✅ Run `install-powershell.sh`
-5. ✅ Run `pwsh ./Setup-K8sClusterAPI.ps1`
-
 
 Happy clustering! 🚀
