@@ -68,6 +68,10 @@ docker ps
 
 ### Step 7: Run the automated install script
 
+```powershell
+# move to repo directory
+cd /mnt/c/av8lab/cluster-api-capd/automated_install/
+```
 Pick an install type
 
 ```powershell
