@@ -14,8 +14,9 @@ This guide uses a **two-step process**:
 # From PowerShell or Terminal
 wsl --install Ubuntu-22.04
 
-# initial user username av8gen01
-# initial user password av8
+# When prompted
+# set initial user username to av8gen01
+# set initial user password to av8
 ```
 You should now be in your Ubuntu bash shell.
 
