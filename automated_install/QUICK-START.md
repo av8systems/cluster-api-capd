@@ -50,14 +50,19 @@ chmod +x automated_install.ps1
 ### Step 6: Exit out of Wsl and re-enter 
 
 ```bash
+# You should have to exit twice to get out of Wsl
+exit
+exit
 wsl --shutdown
 wsl -d Ubuntu-22.04
 ```
 
-### Step 7: Launch PowerShell from Wsl
+### Step 7: Launch PowerShell from Wsl and test docker permissions
 
 ```bash
 pwsh
+# ensure no permissions error is returned after running docker ps
+docker ps
 ```
 
 ### Step 7: Run the automated install script
