@@ -18,39 +18,33 @@ You should now be in your Ubuntu bash shell.
 
 ### Step 2: Create and move into av8lab directory
 ```powershell
-mkdir /mnt/c/av8lab
+mkdir /mnt/c/av8lab -p
 cd /mnt/c/av8lab
 ```
 
-### Step 3: Clone Repository
+### Step 3: Clone repository
 
 ```powershell
 git clone https://github.com/av8systems/cluster-api-capd.git
+# Move to install directory
+cd cluster-api-capd/automated_install/
 ```
+
+### Step 4: Make install scripts executable
 
 ```bash
-# Example: If files are in Windows downloads folder
-cp /mnt/c/Users/YourUsername/Downloads/*.sh ~/
-cp /mnt/c/Users/YourUsername/Downloads/*.ps1 ~/
-
-# Or create a dedicated directory
-mkdir -p ~/k8s-setup
-cd ~/k8s-setup
-# Copy files here
+chmod +x install-prereqs.sh
+chmod +x automated_install.ps1
 ```
 
-### Step 3: Install PowerShell 7
+### Step 5: Install PowerShell 7 and Docker Engine
 
 ```bash
-# Make the script executable
-chmod +x install-powershell.sh
-
-# Run the installation script
-./install-powershell.sh
+./install-prereqs.sh
 ```
 
-**Expected output:**
-```
+
+
 ========================================
 PowerShell 7 Installation for WSL
 ========================================
