@@ -60,6 +60,7 @@ wsl -d Ubuntu-22.04
 ### Step 7: Launch PowerShell from Wsl and test docker permissions
 
 ```bash
+# open powershell
 pwsh
 # ensure no permissions error is returned after running docker ps
 docker ps
