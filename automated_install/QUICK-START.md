@@ -15,7 +15,7 @@ This guide uses a **two-step process**:
 wsl --install Ubuntu-22.04
 
 # When prompted
-# set initial user username to av8gen01
+# set initial user username to av8
 # set initial user password to av8
 ```
 You should now be in your Ubuntu bash shell.
