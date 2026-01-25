@@ -1,4 +1,4 @@
-# Quick Start Guide - WSL Kubernetes Cluster Setup
+# Cluster API - CAPD - Automated Install
 
 ## Installation Workflow
 
@@ -12,17 +12,21 @@ This guide uses a **two-step process**:
 
 ```powershell
 # From PowerShell or Terminal
-wsl -d Ubuntu-22.04
+wsl --instal Ubuntu-22.04
 ```
 You should now be in your Ubuntu bash shell.
 
-### Step 2: Clone Repository
+### Step 2: Create and move into av8lab directory
+```powershell
+mkdir /mnt/c/av8lab
+cd /mnt/c/av8lab
+```
 
-Copy the following files to your WSL home directory:
-- `install-powershell.sh`
-- `preflight-check.sh`
-- `Setup-K8sClusterAPI.ps1`
-- `Cleanup-K8sClusterAPI.ps1`
+### Step 3: Clone Repository
+
+```powershell
+git clone https://github.com/av8systems/cluster-api-capd.git
+```
 
 ```bash
 # Example: If files are in Windows downloads folder
