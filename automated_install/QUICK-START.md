@@ -8,11 +8,14 @@ This guide uses a **two-step process**:
 
 ## Step-by-Step Installation
 
-### Step 1: Install WSL
+### Step 1: Install Wsl
 
 ```powershell
 # From PowerShell or Terminal
-wsl --instal Ubuntu-22.04
+wsl --install Ubuntu-22.04
+
+# initial user username av8gen01
+# initial user password av8
 ```
 You should now be in your Ubuntu bash shell.
 
@@ -43,14 +46,14 @@ chmod +x automated_install.ps1
 ./install-prereqs.sh
 ```
 
-### Step 6: Exit out of WSl and re-enter 
+### Step 6: Exit out of Wsl and re-enter 
 
 ```bash
 wsl --shutdown
 wsl -d Ubuntu-22.04
 ```
 
-### Step 7: Open PowerShell from Wsl
+### Step 7: Launch PowerShell from Wsl
 
 ```bash
 pwsh
@@ -66,11 +69,6 @@ Pick an install type
 ```
 
 ```powershell
-# Install with all optional workloads
-./automated_install.ps1 -InstallObservability -InstallSecurity -InstallAppManagement
-```
-
-```powershell
 # Install with observability workloads
 # Istio, Kiali, Prometheus, Grafana, Jaeger, Loki
 ./automated_install.ps1 -InstallObservability
@@ -78,44 +76,35 @@ Pick an install type
 
 ```powershell
 # Install with security workloads
-**Security:** Falco, Kyverno, Vault, Trivy
+# Falco, Kyverno, Vault, Trivy
 ./automated_install.ps1 -InstallSecurity 
 ```
 
 ```powershell
 # Install with appplication management workloads
+# ArgoCD, Keda, Harbor
 ./automated_install.ps1 -InstallAppManagement
 ```
 
-This installs:
-- ✅ Management cluster (Kind)
-
-
-#### Full Installation (All Workloads)
-
-
-Additional components:
-- **Observability:** Istio, Kiali, Prometheus, Grafana, Jaeger, Loki
-- 
-- **App Management:** ArgoCD, Keda, Harbor
-
+```powershell
+# Install with all optional workloads
+./automated_install.ps1 -InstallObservability -InstallSecurity -InstallAppManagement
+```
 
 ### Step 8: Verify Installation
 
 After the script completes:
 
 ```bash
-# Switch to workload cluster context
-kubectl config use-context d01av8test001-admin@d01av8test001
-
-# Check nodes (should show Ready status)
+# ✅ Check nodes (should show Ready status)
 kubectl get nodes
 
-# Check all pods (should show Running status)
+# ✅ Check all pods (should show Running status)
+# Important! It can take up to 10 minutes for all pods to show running.
 kubectl get pods -A
 
-# Check MetalLB IP pool
+# ✅ Check MetalLB IP pool
 kubectl get ipaddresspool -n metallb-system
 ```
-
+ 
 Happy clustering! 🚀
