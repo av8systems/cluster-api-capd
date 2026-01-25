@@ -117,13 +117,7 @@ echo ""
 print_header "Installing Docker engine"
 echo ""
 sudo apt-get install -y docker.io
-echo ""
-print_header "Configuring docker user"
-echo ""
 sudo usermod -aG docker $USER
-echo ""
-print_header "Creating docker group"
-echo ""
 echo ""
 print_header "IMPORTANT! Exit out of Wsl and re enter before continuing"
 echo ""
