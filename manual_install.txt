@@ -17,7 +17,7 @@ mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/workload -p
 mkdir /mnt/c/av8systems/cluster-api/tools -p
 mkdir /mnt/c/av8systems/cluster-api/apps -p
 mkdir /mnt/c/av8systems/cluster-api/tmp -p
-mkdir $WORKLOAD_KUBECONFIG_DIR  -p 
+mkdir /mnt/c/av8systems/cluster-api/providers/capd/clusters/workload/d01av8test001/configs  -p 
 
 # Cluster API directory structure
 cluster-api
