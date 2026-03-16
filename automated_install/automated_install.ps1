@@ -426,6 +426,9 @@ bash -c "kubectl config use-context $WorkloadClusterName-admin@$WorkloadClusterN
 Write-Host "✓ Workload cluster created successfully" -ForegroundColor Green
 Write-Host ""
 
+Write-Host "Sleeping for 10 seconds..." -ForegroundColor Gray
+Start-Sleep -Seconds 10
+
 # Step 9: Install Calico CNI
 Write-Host "========================================" -ForegroundColor Green
 Write-Host "Step 9: Installing Calico CNI" -ForegroundColor Green
