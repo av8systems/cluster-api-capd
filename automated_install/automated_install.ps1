@@ -428,6 +428,7 @@ Write-Host ""
 
 Write-Host "Sleeping for 10 seconds..." -ForegroundColor Gray
 Start-Sleep -Seconds 10
+Write-Host ""
 
 # Step 9: Install Calico CNI
 Write-Host "========================================" -ForegroundColor Green
