@@ -434,8 +434,11 @@ Write-Host "========================================" -ForegroundColor Green
 Write-Host "Installing Calico..." -ForegroundColor Gray
 bash -c "kubectl apply -f https://raw.githubusercontent.com/projectcalico/calico/v3.27.3/manifests/calico.yaml"
 
-Write-Host "Waiting for Calico pods to be ready..." -ForegroundColor Gray
-bash -c "kubectl wait --for=condition=Ready pods --all -n kube-system --timeout=600s"
+Write-Host "Waiting for Calico kube controller pods to be ready..." -ForegroundColor Gray
+bash -c "kubectl rollout status -n kube-system deployment/calico-kube-controllers --timeout=600s"
+
+Write-Host "Waiting for Calico node pods to be ready..." -ForegroundColor Gray
+bash -c "kubectl rollout status -n kube-system daemonset/calico-node --timeout=600s"
 
 Write-Host "Waiting for nodes to be ready..." -ForegroundColor Gray
 bash -c "kubectl wait --for=condition=Ready node --all --timeout=300s"
