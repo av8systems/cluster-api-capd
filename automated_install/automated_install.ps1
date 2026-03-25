@@ -82,7 +82,7 @@ if (!($IsLinux)) {
 }
 
 # Create variables
-$tmpDir = '/mnt/c/av8systems/cluster-api/tmp'
+$tmpDir = '/home/av8/av8systems/cluster-api/tmp'
 
 # Display banner
 Write-Host "========================================" -ForegroundColor Green
@@ -106,10 +106,10 @@ Write-Host "Step 1: Creating Directory Structure" -ForegroundColor Green
 Write-Host "========================================" -ForegroundColor Green
 
 $directories = @(
-    "/mnt/c/av8systems/cluster-api/providers/capd/clusters/management",
-    "/mnt/c/av8systems/cluster-api/providers/capd/clusters/workload",
-    "/mnt/c/av8systems/cluster-api/tools",
-    "/mnt/c/av8systems/cluster-api/apps",
+    "/home/av8/av8systems/cluster-api/providers/capd/clusters/management",
+    "/home/av8/av8systems/cluster-api/providers/capd/clusters/workload",
+    "/home/av8/av8systems/cluster-api/tools",
+    "/home/av8/av8systems/cluster-api/apps",
     $tmpDir
 )
 
@@ -355,7 +355,7 @@ Write-Host "========================================" -ForegroundColor Green
 
 $env:MANAGEMENT_CLUSTER_NAME = $ManagementClusterName
 $env:WORKLOAD_CLUSTER_NAME = $WorkloadClusterName
-$env:WORKLOAD_KUBECONFIG_DIR = "/mnt/c/av8systems/cluster-api/providers/capd/clusters/workload/$WorkloadClusterName/configs"
+$env:WORKLOAD_KUBECONFIG_DIR = "/home/av8/av8systems/cluster-api/providers/capd/clusters/workload/$WorkloadClusterName/configs"
 $env:CLUSTER_TOPOLOGY = "true"
 $env:CLUSTERCTL_DEFAULT_INFRASTRUCTURE = "docker"
 
