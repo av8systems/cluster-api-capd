@@ -22,8 +22,8 @@ You should now be in your Ubuntu bash shell.
 
 ### Step 2: Create and move into av8lab directory
 ```bash
-mkdir /mnt/c/av8lab -p
-cd /mnt/c/av8lab
+mkdir /home/av8/av8lab -p
+cd /home/av8/av8lab
 ```
 
 ### Step 3: Clone repository
